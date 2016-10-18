@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+  <head>
+    <title>Texto com efeito</title>
+    <meta name="author" content="TMC" />
+
+    <script type="text/javascript">
+      <!--
+        msg = "Conhecimento nunca é demais!";   // A mensagem fica aqui
+        x = 33;
+        inicio = 33;    // ponto em pixels onde começa o efeito 
+        fim = 333;      // ponto em pixels onde termina o efeito
+        vai = true;
+        z = true; 
+        c = 0;          // variável responsável pela mudança de cores 
+        quicar = 1;     // 1 para quicar, 0 para rolar normalmente
+        piscar = 1;     // 1 para piscar, 0 para não piscar
+        movimentar = 1; // 1 para movimentar, 0 para parar
+        tempo = 35;     // tempo em milissegundos
+        
+        function Marquee() {
+          document.getElementById("marquee").innerHTML = msg;
+          document.getElementById("marquee").style.color = "#" + c + c + c;
+          if (movimentar == 1) {
+            document.getElementById("marquee").style.top = (quicar == 1) ? (100 + 25 * Math.sin(5 *((Math.PI * x)/180)) + "px") : (100 + "px");  // Eixo X
+            document.getElementById("marquee").style.left = x + "px";  // Eixo Y
+
+            if (vai) {    
+              x++;
+              if (x >= fim) {
+                vai = false;
+              }
+            }
+            else {
+              x--;
+              if (x <= inicio) {
+                vai = true;
+              }
+            }
+          }
+          if (piscar == 1) {
+            (z == true) ? c++ : c--;
+            if (c == 9)
+              z = false;
+            else if (c == 0)
+              z = true;
+          }
+          setTimeout("Marquee()", tempo) 
+        }
+      //-->
+    </script>
+  </head>
+  
+  <body onload="Marquee()">
+    <div style="font: 14px Verdana; position: absolute; top: 100px; left: 33px; height: 10px" id="marquee"></div>
+  </body>
+</html>
